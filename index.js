@@ -162,8 +162,6 @@ function displayFirstKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = 0;
         displayKudo();
-    } else {
-        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
@@ -172,8 +170,6 @@ function displaylastKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = 1;
         displayKudo();
-    } else {
-        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
@@ -190,8 +186,6 @@ function displayPreviousKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = (currentKudoIndex - 1 + allKudos.length) % allKudos.length;
         displayKudo();
-    } else {
-        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
@@ -200,8 +194,6 @@ function displayNextKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = (currentKudoIndex + 1) % allKudos.length;
         displayKudo();
-    } else {
-        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
