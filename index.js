@@ -33,7 +33,6 @@ const deleteMessage = document.getElementById('deleteMessage');
 const prevKudoButton = document.getElementById('prevKudoButton');
 const firstKudoButton = document.getElementById('firstKudoButton');
 const lastKudoButton = document.getElementById('lastKudoButton');
-<button class="last-kudo-button" id="lastKudoButton">Go to Last Kudos</button>
 const nextKudoButton = document.getElementById('nextKudoButton');
 
 // Variables to keep track of kudos
@@ -168,7 +167,7 @@ function displayFirstKudo() {
 // Function to display the last kudo
 function displaylastKudo() {
     if (allKudos.length > 0) {
-        currentKudoIndex = 1;
+        currentKudoIndex = allKudos.length - 1;
         displayKudo();
     }
 }
@@ -245,6 +244,7 @@ function deleteCurrentKudo() {
 // Add click event listeners to the buttons
 generateRandomKudosButton.addEventListener('click', displayRandomKudo);
 firstKudoButton.addEventListener('click', displayFirstKudo);
+lastKudoButton.addEventListener('click', displaylastKudo);
 prevKudoButton.addEventListener('click', displayPreviousKudo);
 nextKudoButton.addEventListener('click', displayNextKudo);
 deleteKudoButton.addEventListener('click', deleteCurrentKudo);
