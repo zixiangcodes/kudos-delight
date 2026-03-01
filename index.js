@@ -170,7 +170,7 @@ function displayFirstKudo() {
 // Function to display the last kudo
 function displaylastKudo() {
     if (allKudos.length > 0) {
-        currentKudoIndex = -1;
+        currentKudoIndex = 1;
         displayKudo();
     } else {
         complimentDisplay.textContent = "No kudos available.";

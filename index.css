@@ -82,6 +82,14 @@ button {
     background-color: darkslateblue;
 }
 
+.last-kudo-button {
+    background-color: mediumslateblue;
+}
+
+.last-kudo-button:hover {
+    background-color: darkslateblue;
+}
+
 .nav-buttons {
     background-color: slateGray;
 }
