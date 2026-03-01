@@ -94,13 +94,14 @@ complimentForm.addEventListener('submit', (e) => {
 
     if (newCompliment !== '') {
         push(complimentsRef, newCompliment)
-            .then(() => {
+            .then((pushRef) => {
+                const newKudoKey = pushRef.key;
                 complimentInput.value = '';
                 complimentForm.classList.add('hidden');
                 toggleFormButton.textContent = 'Add Kudos 🎀';
                 showSuccessMessage();
                 updateKudoCounter();
-                fetchCompliments(); // Refresh the kudos list
+                fetchCompliments(newKudoKey); // Refresh and navigate to the new kudos
             })
             .catch((error) => {
                 console.error('Error adding compliment:', error);
@@ -109,7 +110,8 @@ complimentForm.addEventListener('submit', (e) => {
 });
 
 // Function to fetch compliments data from Firebase (stores both keys and values)
-function fetchCompliments() {
+// Optional: navigateToKey - when provided (e.g. after creating new kudos), navigate to that kudo
+function fetchCompliments(navigateToKey = null) {
     get(complimentsRef)
         .then((snapshot) => {
             if (snapshot.exists()) {
@@ -117,7 +119,17 @@ function fetchCompliments() {
                 allKudos = Object.values(complimentsData);
                 allKudosKeys = Object.keys(complimentsData); // Store the Firebase keys
                 updateKudoCounter();
-                if (currentKudoIndex === -1) {
+
+                if (navigateToKey !== null) {
+                    // Navigate to the newly created kudos
+                    const newIndex = allKudosKeys.indexOf(navigateToKey);
+                    if (newIndex !== -1) {
+                        currentKudoIndex = newIndex;
+                        displayKudo();
+                    } else if (currentKudoIndex === -1) {
+                        displayRandomKudo();
+                    }
+                } else if (currentKudoIndex === -1) {
                     displayRandomKudo();
                 }
             } else {
