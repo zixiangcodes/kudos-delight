@@ -28,6 +28,7 @@ const toggleFormButton = document.getElementById('toggleFormButton');
 const kudoCounter = document.getElementById('kudoCounter');
 const deleteKudoButton = document.getElementById('deleteKudoButton');
 const deleteMessage = document.getElementById('deleteMessage');
+const boundaryMessage = document.getElementById('boundaryMessage');
 
 // Select the navigation buttons from HTML (with corrected IDs)
 const prevKudoButton = document.getElementById('prevKudoButton');
@@ -159,6 +160,10 @@ function displayRandomKudo() {
 // Function to display the first kudo (FIXED: was using assignment instead of comparison)
 function displayFirstKudo() {
     if (allKudos.length > 0) {
+        if (currentKudoIndex === 0) {
+            showBoundaryMessage("⚠️ You're already at the first kudos!");
+            return;
+        }
         currentKudoIndex = 0;
         displayKudo();
     }
@@ -167,6 +172,10 @@ function displayFirstKudo() {
 // Function to display the last kudo
 function displaylastKudo() {
     if (allKudos.length > 0) {
+        if (currentKudoIndex === allKudos.length - 1) {
+            showBoundaryMessage("⚠️ You're already at the last kudos!");
+            return;
+        }
         currentKudoIndex = allKudos.length - 1;
         displayKudo();
     }
@@ -239,6 +248,14 @@ function deleteCurrentKudo() {
                 alert('Error deleting kudo. Please try again.');
             });
     }
+}
+
+function showBoundaryMessage(message) {
+    boundaryMessage.textContent = message;
+    boundaryMessage.style.display = 'block';
+    setTimeout(() => {
+        boundaryMessage.style.display = 'none';
+    }, 3000);
 }
 
 // Add click event listeners to the buttons
