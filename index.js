@@ -43,6 +43,9 @@ let currentKudoIndex = -1;
 // Variable to store the Firebase keys alongside the values
 let allKudosKeys = [];
 
+// Variable to set boundary message (first or last kudos) as null first, to clear it when buttons are clicked.
+let boundaryMessageTimeout = null;
+
 // FUNCTIONS:
 // Function to show/hide the submission form
 toggleFormButton.addEventListener('click', () => {
@@ -253,7 +256,9 @@ function deleteCurrentKudo() {
 function showBoundaryMessage(message) {
     boundaryMessage.textContent = message;
     boundaryMessage.style.display = 'block';
-    setTimeout(() => {
+
+    clearTimeout(boundaryMessageTimeout);
+    boundaryMessageTimeout = setTimeout(() => {
         boundaryMessage.style.display = 'none';
     }, 3000);
 }
