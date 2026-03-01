@@ -32,6 +32,8 @@ const deleteMessage = document.getElementById('deleteMessage');
 // Select the navigation buttons from HTML (with corrected IDs)
 const prevKudoButton = document.getElementById('prevKudoButton');
 const firstKudoButton = document.getElementById('firstKudoButton');
+const lastKudoButton = document.getElementById('lastKudoButton');
+<button class="last-kudo-button" id="lastKudoButton">Go to Last Kudos</button>
 const nextKudoButton = document.getElementById('nextKudoButton');
 
 // Variables to keep track of kudos
@@ -160,6 +162,18 @@ function displayFirstKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = 0;
         displayKudo();
+    } else {
+        complimentDisplay.textContent = "No kudos available.";
+    }
+}
+
+// Function to display the last kudo
+function displaylastKudo() {
+    if (allKudos.length > 0) {
+        currentKudoIndex = -1;
+        displayKudo();
+    } else {
+        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
@@ -176,6 +190,8 @@ function displayPreviousKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = (currentKudoIndex - 1 + allKudos.length) % allKudos.length;
         displayKudo();
+    } else {
+        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
@@ -184,6 +200,8 @@ function displayNextKudo() {
     if (allKudos.length > 0) {
         currentKudoIndex = (currentKudoIndex + 1) % allKudos.length;
         displayKudo();
+    } else {
+        complimentDisplay.textContent = "No kudos available.";
     }
 }
 
